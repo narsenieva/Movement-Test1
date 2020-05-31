@@ -224,7 +224,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.094, y: -1.4377637, z: 0}
   m_LocalScale: {x: 33.680492, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1670160750}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -344,6 +345,8 @@ GameObject:
   - component: {fileID: 1641638933}
   - component: {fileID: 1641638932}
   - component: {fileID: 1641638931}
+  - component: {fileID: 1641638936}
+  - component: {fileID: 1641638935}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -363,7 +366,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -461,6 +464,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1641638935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641638930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27aeb07dec3a5b45900f4f1722ac75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 256
+  speed: 15
+  jumpForce: 15
+  groundTarget: {fileID: 1641638934}
+  grounded: 0
+  rb: {fileID: 1641638931}
+  boxCollider: {fileID: 1641638932}
+--- !u!114 &1641638936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641638930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9eb00d428c6a894a853e70f5316b701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallMutiply: 2.5
+  lowJump: 2
 --- !u!1 &1670160747
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +511,7 @@ GameObject:
   - component: {fileID: 1670160749}
   - component: {fileID: 1670160748}
   - component: {fileID: 1670160751}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: ground
   m_Icon: {fileID: 0}
@@ -562,12 +600,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670160747}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.974, y: 0.6805717, z: 0}
-  m_LocalScale: {x: 6.188, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.033253673, y: 2.1183352, z: 0}
+  m_LocalScale: {x: 0.18372653, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 241746608}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1670160751
 Rigidbody2D:
