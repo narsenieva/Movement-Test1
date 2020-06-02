@@ -29,41 +29,60 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
-        if (Input.GetButtonDown("Jump") && !IsGrounded())
+            Move();
+
+        if (Input.GetButtonDown("Jump") && IsGrounded())
             Jump();
 
     }
 
     public void Move()
     {
-        float x = Input.GetAxis("Horizontal");
-        Vector2 move = new Vector2(x * speed, rb.velocity.y);
-        rb.velocity = move;
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        transform.position += move * Time.deltaTime * speed;
+        //float x = Input.GetAxis("Horizontal");
+        //Vector2 move = new Vector2(x * speed, rb.velocity.y);
+        //rb.velocity = move;
     }
 
     public void Jump()
     {
         //rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         //rb.AddForce(Vector2.up * jumpForce);
-        rb.velocity = Vector2.up * jumpForce;
+        //rb.velocity = Vector2.up * jumpForce;
+        rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
     }
 
     public bool IsGrounded()
     {
+        //RaycastHit2D ray = Physics2D.Raycast(boxCollider.bounds.center, Vector2.down,
+            //boxCollider.bounds.extents.y);
         bool hit = Physics2D.Linecast(
                 boxCollider.bounds.center,
-                boxCollider.bounds.extents,
-                1 << LayerMask.NameToLayer("ground"));
+                Vector2.down,
+                //boxCollider.bounds.extents * 2,
+                1 << LayerMask.NameToLayer("testGround"));
+        //1 >> LayerMask.NameToLayer("ground"));
 
-        Debug.DrawRay(boxCollider.bounds.center, Vector2.down, Color.yellow);
-        if (hit)
+        RaycastHit2D hitTest = Physics2D.Raycast(
+            boxCollider.bounds.center,
+            Vector2.down,
+            boxCollider.bounds.extents.y + 1,
+            groundMask);
+
+        Debug.DrawRay(boxCollider.bounds.center,
+            Vector2.down * (boxCollider.bounds.extents.y + 1), Color.yellow);
+        Debug.Log(hitTest.collider);
+        return hitTest.collider != null;
+        /*if (hitTest)
         {
+            Debug.Log("ground");
             return true;
         } 
         else
         {
+            Debug.Log("NOT ground");
             return false;
-        }
+        }*/
     }
 }
